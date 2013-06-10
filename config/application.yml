@@ -5,7 +5,7 @@ site:
   name: Alarm Me
   secret_phrase: Help me, holy Hamster!
   noreply_email: noreply@alarmme
-  email_list: [moriony@inamerica.ru]
+  email_list: [demateus@gmail.com]
 
 # cache
 cache.options :
