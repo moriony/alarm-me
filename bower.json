@@ -1,0 +1,8 @@
+{
+    "name": "alarm-me",
+    "version": "1.0.0",
+
+    "dependencies": {
+        "bootstrap": "2"
+    }
+}

@@ -1,0 +1,22 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="wrapper">
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            <fieldset>
+                <textarea name="message" id="message" class="input-block-level" cols="100" rows="3" placeholder="Случилась беда? Печатай сюда! ... вкратце"></textarea>
+                <p>
+                    <button type="submit" class="btn btn-danger btn-large">
+                        <i class="icon-fire icon-white"></i> Доложить о беде
+                    </button>
+                </p>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

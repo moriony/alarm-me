@@ -1,0 +1,28 @@
+debug : true
+
+# site options
+site:
+  name: Alarm Me
+  secret_phrase: Help me, holy Hamster!
+  noreply_email: noreply@alarmme
+  email_list: [demateus@gmail.com]
+
+# cache
+cache.options :
+  default :
+    driver : filesystem
+    directory : ../cache/
+
+# twig
+twig.path : ../src/Views
+twig.options :
+  cache : false
+
+#swiftmailer
+swiftmailer.options:
+  host: localhost
+  port: 25
+  username: test
+  password: test
+  encryption: null
+  auth_mode: null

@@ -1,0 +1,21 @@
+{
+    "name" : "moriony/alarm-me",
+    "description": "Simple alarm application",
+    "license":  "MIT",
+    "require": {
+        "silex/silex"     : "1.*",
+        "twig/twig"       : "1.*",
+        "symfony/validator": "*",
+        "symfony/yaml"    : "2.*",
+        "symfony/twig-bridge" : "2.*",
+        "igorw/config-service-provider" : "*",
+        "swiftmailer/swiftmailer": "*"
+    },
+    "autoload" : {
+        "psr-0": {
+            "App": "src/",
+            "Controllers" : "src/",
+            "Models" : "src/"
+        }
+    }
+}
