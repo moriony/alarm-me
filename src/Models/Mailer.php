@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints;
 
 class Mailer extends AbstractModel
 {
-    protected static $ALARM_TITLE = "Alarm! Something wrong!";
+    protected static $ALARM_TITLE = "Alarm! Something went wrong!";
 
     protected static $INVALID_TEXT_MESSAGE = "Сообщение не должно быть пустым, максимальная длина %d символов";
 
