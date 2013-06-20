@@ -1,12 +1,5 @@
 debug : true
 
-# site options
-site:
-  name: Alarm Me
-  secret_phrase: Help me, holy Hamster!
-  noreply_email: noreply@esteit.com
-  email_list: [demateus@gmail.com]
-
 # cache
 cache.options :
   default :

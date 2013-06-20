@@ -33,7 +33,7 @@ class Mailer extends AbstractModel
 
         $transport = new \Swift_Transport_SimpleMailInvoker();
         foreach($this->site('email_list') as $email) {
-            $transport->mail($email, self::$ALARM_TITLE, $text, sprintf('From: %', $this->site('noreply_email')));
+            $transport->mail($email, self::$ALARM_TITLE, $text, sprintf('From: %s', $this->site('noreply_email')));
         }
     }
 }

@@ -3,3 +3,4 @@
 /vendor
 /.idea
 /public_html/components
+/config/site.yml
