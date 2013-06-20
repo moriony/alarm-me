@@ -11,7 +11,6 @@ class Mailer extends AbstractModel
     protected static $ALARM_TITLE = "Alarm! Something wrong!";
 
     protected static $INVALID_TEXT_MESSAGE = "Сообщение не должно быть пустым, максимальная длина %d символов";
-    protected static $UNDELIVERED_MESSAGE = "Не удалось доставить сообщение";
 
     protected $min = 1;
     protected $max = 150;
@@ -32,16 +31,9 @@ class Mailer extends AbstractModel
             throw new InvalidText(sprintf(self::$INVALID_TEXT_MESSAGE, $this->max));
         }
 
-        /**
-         * @var \Swift_Message $message
-         */
-        $message = $this->mailer()->createMessage();
-        $message->setSubject(self::$ALARM_TITLE);
-        $message->setTo($this->site('email_list'));
-        $message->setFrom($this->site('noreply_email'));
-        $message->setBody($text);
-        if(!$this->mailer()->send($message)) {
-            throw new Undelivered(self::$UNDELIVERED_MESSAGE);
+        $transport = new \Swift_Transport_SimpleMailInvoker();
+        foreach($this->site('email_list') as $email) {
+            $transport->mail($email, self::$ALARM_TITLE, $text, sprintf('From: %', $this->site('noreply_email')));
         }
     }
 }

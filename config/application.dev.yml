@@ -4,7 +4,7 @@ debug : true
 site:
   name: Alarm Me
   secret_phrase: Help me, holy Hamster!
-  noreply_email: noreply@alarmme
+  noreply_email: noreply@esteit.com
   email_list: [demateus@gmail.com]
 
 # cache
@@ -17,12 +17,3 @@ cache.options :
 twig.path : ../src/Views
 twig.options :
   cache : false
-
-#swiftmailer
-swiftmailer.options:
-  host: localhost
-  port: 25
-  username: test
-  password: test
-  encryption: null
-  auth_mode: null

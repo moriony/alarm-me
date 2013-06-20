@@ -17,12 +17,3 @@ cache.options :
 twig.path : ../src/Views
 twig.options :
   cache : ../cache/twig
-
-#swiftmailer
-swiftmailer.options:
-  host: localhost
-  port: 25
-  username: null
-  password: null
-  encryption: null
-  auth_mode: null
