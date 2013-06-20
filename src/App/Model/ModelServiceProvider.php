@@ -24,7 +24,6 @@ class ModelServiceProvider implements ServiceProviderInterface
         $app[ModelServiceProvider::MODELS_REGISTRY] = array();
 
         $app[self::GET_MODEL] = $app->protect(function($name) use ($app) {
-            $name = strtolower($name);
             $registry = $app[ModelServiceProvider::MODELS_REGISTRY];
             if(!isset($registry[$name])) {
                 $options = $app[ModelServiceProvider::MODELS_OPTIONS];

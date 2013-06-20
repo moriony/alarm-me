@@ -22,7 +22,7 @@ twig.options :
 swiftmailer.options:
   host: localhost
   port: 25
-  username: test
-  password: test
+  username: null
+  password: null
   encryption: null
   auth_mode: null
