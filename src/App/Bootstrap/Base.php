@@ -25,5 +25,6 @@ class Base extends Abstracted
         $app->register(new ValidatorServiceProvider);
         $app->register(new ModelServiceProvider);
         $app->register(new ConfigServiceProvider(__DIR__ . "/../../../config/application" . $suffix . ".yml"));
+        $app->register(new ConfigServiceProvider(__DIR__ . "/../../../config/site.yml"));
     }
 }
