@@ -18,7 +18,7 @@ class HomepageController extends AbstractController
         $controllers->match('/', array($this, 'homepage'))
                     ->bind('homepage');
 
-        $this->mailer = $this->model('mailer');
+        $this->mailer = $this->model('Mailer');
     }
 
     public function homepage()
