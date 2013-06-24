@@ -1,9 +1,6 @@
 <?php
 namespace App\Model;
 
-use Doctrine\Common\Cache\CacheProvider;
-use Doctrine\ODM\MongoDB\DocumentManager;
-use Moriony\Silex\Provider\ZmqSocketProvider;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Validator\Validator;
@@ -24,32 +21,11 @@ abstract class AbstractModel
     }
 
     /**
-     * @desc Override me
-     */
-    public function init() {}
-
-    /**
      * @return Session
      */
     protected function session()
     {
         return $this->app['session'];
-    }
-
-    /**
-     * @return CacheProvider
-     */
-    protected function cache()
-    {
-        return $this->app['cache'];
-    }
-
-    /**
-     * @return DocumentManager
-     */
-    protected function odm()
-    {
-        return $this->app['doctrine.odm.mongodb.dm'];
     }
 
     /**
@@ -79,18 +55,6 @@ abstract class AbstractModel
     protected function validator()
     {
         return $this->app['validator'];
-    }
-
-    /**
-     * @param string|null $name
-     * @return ZmqSocketProvider|\ZMQSocket
-     */
-    protected function zmqSocket($name = null)
-    {
-        if(!is_null($name)) {
-            return $this->app['zmq.socket'][$name];
-        }
-        return $this->app['zmq.socket'];
     }
 
     /**
