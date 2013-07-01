@@ -3,6 +3,7 @@ namespace Models;
 
 use App\Model\AbstractModel;
 use Models\Notifier\Exception\InvalidText;
+use Models\Project\Exception\PhoneListNotFound;
 use Symfony\Component\Validator\Constraints;
 
 class Notifier extends AbstractModel
@@ -40,7 +41,11 @@ class Notifier extends AbstractModel
             $transport->mail($email, sprintf(self::$ALARM_TITLE, $project), $text, sprintf('From: %s', $this->site('noreply_email')));
         }
 
-        $phoneList = $projectModel->getPhoneList($project);
+        try {
+            $phoneList = $projectModel->getPhoneList($project);
+        } catch(PhoneListNotFound $e) {
+            $phoneList = array();
+        }
         $a1sms = $this->a1sms();
         foreach($phoneList as $phone) {
             $a1sms->send($phone, sprintf(self::$ALARM_TITLE, $project));
