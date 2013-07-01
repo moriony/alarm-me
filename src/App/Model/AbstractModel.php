@@ -1,6 +1,8 @@
 <?php
 namespace App\Model;
 
+use Moriony\Service\A1Sms\Client as A1SmsClient;
+use Moriony\Silex\Provider\A1SmsServiceProvider;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Validator\Validator;
@@ -84,5 +86,13 @@ abstract class AbstractModel
     protected function mailer()
     {
         return $this->app['mailer'];
+    }
+
+    /**
+     * @return A1SmsClient
+     */
+    protected function a1sms()
+    {
+        return $this->app[A1SmsServiceProvider::A1SMS];
     }
 }
