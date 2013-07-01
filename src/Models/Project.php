@@ -3,6 +3,7 @@ namespace Models;
 
 use App\Model\AbstractModel;
 use Models\Project\Exception\EmailListNotFound;
+use Models\Project\Exception\PhoneListNotFound;
 use Models\Project\Exception\ProjectNotFound;
 use Symfony\Component\Validator\Constraints;
 
@@ -44,14 +45,14 @@ class Project extends AbstractModel
     /**
      * @param string $projectName
      * @return mixed
-     * @throws Project\Exception\EmailListNotFound
+     * @throws Project\Exception\PhoneListNotFound
      * @throws Project\Exception\ProjectNotFound
      */
     public function getPhoneList($projectName)
     {
         $project = $this->getProject($projectName);
         if(!array_key_exists('phone_list', $project)) {
-            throw new EmailListNotFound(sprintf(self::$PHONE_LIST_NOT_FOUND_MESSAGE, $projectName));
+            throw new PhoneListNotFound(sprintf(self::$PHONE_LIST_NOT_FOUND_MESSAGE, $projectName));
         }
         return $project['phone_list'];
     }
