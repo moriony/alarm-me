@@ -9,7 +9,9 @@
         "symfony/yaml"    : "2.*",
         "symfony/twig-bridge" : "2.*",
         "igorw/config-service-provider" : "*",
-        "swiftmailer/swiftmailer": "*"
+        "swiftmailer/swiftmailer": "*",
+        "moriony/silex-a1sms-provider": "*",
+        "moriony/a1sms-client": "@dev"
     },
     "autoload" : {
         "psr-0": {

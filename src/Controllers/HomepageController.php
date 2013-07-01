@@ -1,7 +1,7 @@
 <?php
 namespace Controllers;
 
-use Models\Mailer;
+use Models\Notifier;
 use Models\Project;
 use Silex\Application;
 use Silex\ControllerCollection;
@@ -10,9 +10,9 @@ use App\Controller\AbstractController;
 class HomepageController extends AbstractController
 {
     /**
-     * @var Mailer
+     * @var Notifier
      */
-    protected $mailer;
+    protected $notifier;
 
     /**
      * @var Project
@@ -24,7 +24,7 @@ class HomepageController extends AbstractController
         $controllers->match('/', array($this, 'homepage'))
                     ->bind('homepage');
 
-        $this->mailer = $this->model('Mailer');
+        $this->notifier = $this->model('Notifier');
         $this->project = $this->model('Project');
     }
 
@@ -35,10 +35,10 @@ class HomepageController extends AbstractController
             if($this->request()->isMethod('post')) {
                 $message = $this->request()->get('message');
                 $project = $this->request()->get('project');
-                $this->mailer->alarm($project, $message);
+                $this->notifier->alarm($project, $message);
                 return $this->twig()->render('homepage/success.twig');
             }
-        } catch(Mailer\Exception\Basic $e) {
+        } catch(Notifier\Exception\Basic $e) {
             $error = $e->getMessage();
         }
         $this->twig()->addGlobal('projects', $this->project->getList());

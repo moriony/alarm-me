@@ -1,5 +1,5 @@
 <?php
-namespace Models\Mailer\Exception;
+namespace Models\Notifier\Exception;
 
 use App\Model\ModelException;
 
