@@ -10,3 +10,7 @@ cache.options :
 twig.path : ../src/Views
 twig.options :
   cache : false
+
+# models repository
+models_repository.options:
+  namespace: Models

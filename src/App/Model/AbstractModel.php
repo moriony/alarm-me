@@ -1,6 +1,7 @@
 <?php
 namespace App\Model;
 
+use App\Provider\ModelsRepositoryProvider;
 use Moriony\Service\A1Sms\Client as A1SmsClient;
 use Moriony\Silex\Provider\A1SmsServiceProvider;
 use Silex\Application;
@@ -72,12 +73,11 @@ abstract class AbstractModel
     }
 
     /**
-     * @param string $name
-     * @return AbstractModel
+     * @return Repository
      */
-    protected function model($name)
+    protected function getModelsRepository()
     {
-        return $this->app['get_model']($name);
+        return $this->app[ModelsRepositoryProvider::MODELS_REPOSITORY];
     }
 
     /**
