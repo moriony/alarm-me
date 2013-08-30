@@ -11,7 +11,8 @@
         "igorw/config-service-provider" : "*",
         "swiftmailer/swiftmailer": "*",
         "moriony/silex-a1sms-provider": "*",
-        "moriony/a1sms-client": "@dev"
+        "moriony/a1sms-client": "dev-master",
+        "moriony/instantiator": "*"
     },
     "autoload" : {
         "psr-0": {

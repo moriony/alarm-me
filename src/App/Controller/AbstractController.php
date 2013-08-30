@@ -1,11 +1,8 @@
 <?php
 namespace App\Controller;
 
-use App\Http\Api\BadRequestResponse;
-use App\Http\Api\ServerErrorResponse;
-use App\Http\Api\SuccessResponse;
-use App\Model\AbstractModel;
-use Moriony\Silex\Provider\ZmqSocketProvider;
+use App\Model\Repository;
+use App\Provider\ModelsRepositoryProvider;
 use Silex\Application;
 use Silex\ControllerCollection;
 use Silex\ControllerProviderInterface;
@@ -13,7 +10,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Doctrine\Common\Cache\CacheProvider;
 
 abstract class AbstractController implements ControllerProviderInterface
 {
@@ -110,12 +106,11 @@ abstract class AbstractController implements ControllerProviderInterface
     }
 
     /**
-     * @param string $name
-     * @return AbstractModel
+     * @return Repository
      */
-    protected function model($name)
+    protected function getModelsRepository()
     {
-        return $this->app['get_model']($name);
+        return $this->app[ModelsRepositoryProvider::MODELS_REPOSITORY];
     }
 
     /**
@@ -127,35 +122,5 @@ abstract class AbstractController implements ControllerProviderInterface
     protected function response($data = array(), $status = 200, $headers = array())
     {
         return $this->app->json($data , $status, $headers);
-    }
-
-    /**
-     * @param array $data
-     * @param array $headers
-     * @return SuccessResponse
-     */
-    protected function successResponse($data = array(), $headers = array())
-    {
-        return new SuccessResponse($data, $headers);
-    }
-
-    /**
-     * @param array $data
-     * @param array $headers
-     * @return ServerErrorResponse
-     */
-    protected function serverErrorResponse($data = array(), $headers = array())
-    {
-        return new ServerErrorResponse($data, $headers);
-    }
-
-    /**
-     * @param array $data
-     * @param array $headers
-     * @return BadRequestResponse
-     */
-    protected function errorResponse($data = array(), $headers = array())
-    {
-        return new BadRequestResponse($data, $headers);
     }
 }
