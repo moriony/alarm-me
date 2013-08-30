@@ -59,9 +59,38 @@ class Project extends AbstractModel
     /**
      * @return array
      */
+    public function getProjects()
+    {
+        return $this->site('projects');
+    }
+
+    /**
+     * @return array
+     */
     public function getList()
     {
         $projects = $this->site('projects');
         return array_keys($projects);
+    }
+
+    public function getPing($projectName)
+    {
+        $project = $this->getProject($projectName);
+        return $this->getModelsRepository()->getSounder()
+                    ->ping($project['host'], $project['port']) . ' ms';
+    }
+
+    public function getLoadTime($projectName)
+    {
+        $project = $this->getProject($projectName);
+        return $this->getModelsRepository()->getSounder()
+                    ->getLoadTime($project['host'], $project['port']) . ' ms';
+    }
+
+    public function getStatus($projectName)
+    {
+        $project = $this->getProject($projectName);
+        return $this->getModelsRepository()->getSounder()
+                    ->isTextOnPage($project['positive_text'], $project['host'], $project['port']);
     }
 }

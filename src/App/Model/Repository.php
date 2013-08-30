@@ -50,4 +50,12 @@ class Repository
     {
         return $this->getModel('Project');
     }
+
+    /**
+     * @return \Models\Sounder
+     */
+    public function getSounder()
+    {
+        return $this->getModel('Sounder');
+    }
 }
