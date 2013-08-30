@@ -1,7 +1,7 @@
 <?php
 namespace App\Bootstrap;
 
-use App\Model\ModelServiceProvider;
+use App\Provider\ModelsRepositoryProvider;
 use Igorw\Silex\ConfigServiceProvider;
 use Moriony\Silex\Provider\A1SmsServiceProvider;
 use Silex\Provider\SwiftmailerServiceProvider;
@@ -25,7 +25,7 @@ class Base extends Abstracted
         $app->register(new SwiftmailerServiceProvider);
         $app->register(new ValidatorServiceProvider);
         $app->register(new A1SmsServiceProvider);
-        $app->register(new ModelServiceProvider);
+        $app->register(new ModelsRepositoryProvider);
         $app->register(new ConfigServiceProvider(__DIR__ . "/../../../config/application" . $suffix . ".yml"));
         $app->register(new ConfigServiceProvider(__DIR__ . "/../../../config/site.yml"));
     }

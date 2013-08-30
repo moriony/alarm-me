@@ -24,7 +24,7 @@ class Notifier extends AbstractModel
         /**
          * @var Project $projectModel
          */
-        $projectModel = $this->model('Project');
+        $projectModel = $this->getModelsRepository()->getProject();
 
         $constraints =  array(
             new Constraints\NotBlank,
