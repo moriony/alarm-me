@@ -9,6 +9,7 @@ class Repository
 {
     protected $storage = array();
     protected $factory;
+    protected $app;
 
     public function __construct(InstantiatorFactory $factory, Application $app)
     {
