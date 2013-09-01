@@ -2,32 +2,7 @@
 
 {% block content %}
     <div class="wrapper">
-        {% if error %}
-            <div class="alert alert-danger">
-                {{ error }}
-            </div>
-        {% endif %}
-
-        <form method="post">
-            <fieldset>
-                <div class="control-group">
-                    <label class="control-label" for="project">Project</label>
-                    <div class="controls">
-                        <select name="project" id="project">
-                            {% for project in projects %}
-                                <option value="{{ project }}">{{ project }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-
-                <textarea name="message" id="message" class="input-block-level" cols="100" rows="3" placeholder="Случилась беда? Печатай сюда! ... вкратце"></textarea>
-                <p>
-                    <button type="submit" class="btn btn-danger btn-large">
-                        <i class="icon-fire icon-white"></i> Report
-                    </button>
-                </p>
-            </fieldset>
-        </form>
+        {% include 'homepage/index/table.twig' %}
+        {% include 'homepage/index/form.twig' %}
     </div>
 {% endblock %}

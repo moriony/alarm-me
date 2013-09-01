@@ -37,4 +37,9 @@ abstract class Abstracted
     {
         $this->app->run();
     }
+
+    public function boot()
+    {
+        $this->app->boot();
+    }
 }
