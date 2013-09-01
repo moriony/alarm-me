@@ -1,6 +1,7 @@
 <?php
 namespace Controllers;
 
+use App\Model\ModelException;
 use Models\Notifier;
 use Models\Project;
 use Silex\Application;
@@ -13,6 +14,15 @@ class HomepageController extends AbstractController
     {
         $controllers->match('/', array($this, 'homepage'))
                     ->bind('homepage');
+
+        $controllers->match('/ping/', array($this, 'ping'))
+                    ->bind('ping');
+
+        $controllers->match('/loadtime/', array($this, 'loadtime'))
+                    ->bind('loadtime');
+
+        $controllers->match('/status/', array($this, 'status'))
+                    ->bind('status');
     }
 
     public function homepage()
@@ -31,8 +41,50 @@ class HomepageController extends AbstractController
             $error = $e->getMessage();
         }
         $projectModel = $this->getModelsRepository()->getProject();
-        $this->twig()->addGlobal('projects', $projectModel->getList());
+        $this->twig()->addGlobal('projects', $projectModel->getProjects());
         $this->twig()->addGlobal('error', $error);
         return $this->twig()->render('homepage/index.twig');
+    }
+
+    public function ping()
+    {
+        try {
+            $project = $this->request()->get('project');
+            return $this->json(array(
+                'value' => $this->getModelsRepository()->getProject()->getPing($project)
+            ));
+        } catch (ModelException $e) {
+            return $this->json(array(
+                'message' => $e->getMessage()
+            ), $e->getCode());
+        }
+    }
+
+    public function loadtime()
+    {
+        try {
+            $project = $this->request()->get('project');
+            return $this->json(array(
+                'value' => $this->getModelsRepository()->getProject()->getLoadTime($project)
+            ));
+        } catch (ModelException $e) {
+            return $this->json(array(
+                'message' => $e->getMessage()
+            ), $e->getCode());
+        }
+    }
+
+    public function status()
+    {
+        try {
+            $project = $this->request()->get('project');
+            return $this->json(array(
+                'value' => $this->getModelsRepository()->getProject()->getStatus($project)
+            ));
+        } catch (ModelException $e) {
+            return $this->json(array(
+                'message' => $e->getMessage()
+            ), $e->getCode());
+        }
     }
 }

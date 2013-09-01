@@ -1,0 +1,27 @@
+{% if error %}
+    <div class="alert alert-danger">
+        {{ error }}
+    </div>
+{% endif %}
+
+<form method="post">
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="project">Project</label>
+            <div class="controls">
+                <select name="project" id="project">
+                    {% for title, project in projects %}
+                        <option value="{{ title }}">{{ title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <textarea name="message" id="message" class="input-block-level" cols="100" rows="3" placeholder="Happens shit? Report about it!"></textarea>
+        <p>
+            <button type="submit" class="btn btn-danger btn-large">
+                <i class="icon-fire icon-white"></i> Report
+            </button>
+        </p>
+    </fieldset>
+</form>

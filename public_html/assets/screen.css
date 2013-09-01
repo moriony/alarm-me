@@ -1,3 +1,15 @@
 .wrapper {
     margin: 40px 0;
 }
+
+.table.status td {
+    white-space: nowrap;
+}
+
+.pony-message {
+    background: url(/assets/images/pony.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    height: 150px;
+    text-shadow: 1px 1px 1px #ffffff;
+}

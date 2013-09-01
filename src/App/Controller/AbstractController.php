@@ -119,7 +119,7 @@ abstract class AbstractController implements ControllerProviderInterface
      * @param array $headers
      * @return JsonResponse
      */
-    protected function response($data = array(), $status = 200, $headers = array())
+    protected function json($data = array(), $status = 200, $headers = array())
     {
         return $this->app->json($data , $status, $headers);
     }
