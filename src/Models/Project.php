@@ -76,15 +76,25 @@ class Project extends AbstractModel
     public function getPing($projectName)
     {
         $project = $this->getProject($projectName);
-        return $this->getModelsRepository()->getSounder()
-                    ->ping($project['host'], $project['port']) . ' ms';
+        $ping = $this->getModelsRepository()->getSounder()
+                     ->ping($project['host'], $project['port']);
+        $result = false;
+        if ($ping) {
+            $result = sprintf('%d ms', $ping);
+        }
+        return  $result;
     }
 
     public function getLoadTime($projectName)
     {
         $project = $this->getProject($projectName);
-        return $this->getModelsRepository()->getSounder()
-                    ->getLoadTime($project['host'], $project['port']) . ' ms';
+        $loadTime = $this->getModelsRepository()->getSounder()
+                         ->getLoadTime($project['host'], $project['port']);
+        $result = false;
+        if ($loadTime) {
+            $result = sprintf('%d ms', $loadTime);
+        }
+        return  $result;
     }
 
     public function getStatus($projectName)

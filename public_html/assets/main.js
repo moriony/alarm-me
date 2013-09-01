@@ -13,6 +13,7 @@ $(function() {
                 dataType: 'json',
                 success: function(data, status) {
                     var value = data.value;
+                    console.log(value);
                     if (dataType == 'status') {
                         if (value) {
                             value = '<span class="label label-success">working</span>';
