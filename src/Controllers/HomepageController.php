@@ -32,9 +32,10 @@ class HomepageController extends AbstractController
             if($this->request()->isMethod('post')) {
                 $message = $this->request()->get('message');
                 $project = $this->request()->get('project');
+                $subject = sprintf('Сотрудник информировал о проблеме с %s!', $project);
                 $this->getModelsRepository()
                      ->getNotifier()
-                     ->alarm($project, $message);
+                     ->alarm($project, $subject, $message);
                 return $this->twig()->render('homepage/success.twig');
             }
         } catch(Notifier\Exception\Basic $e) {

@@ -64,7 +64,8 @@ class Ping extends Command
                 'status' => $status,
             );
             if ($input->getOption('notify') && !$status) {
-                $this->getModelsRepository()->getNotifier()->alarm($name, sprintf($this->getNotification(), $name, date(DATE_ATOM)));
+                $subject = sprintf('Sweet-sentinel информировал о проблеме с %s!', $name);
+                $this->getModelsRepository()->getNotifier()->alarm($name, $subject, sprintf($this->getNotification(), $name, date(DATE_ATOM)));
             }
         }
         $this->printAnswer($input, $output, $result);

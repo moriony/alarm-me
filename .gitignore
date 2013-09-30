@@ -4,3 +4,6 @@
 /.idea
 /public_html/components
 /config/site.yml
+/sweet-sentinel.iml
+/public_html/.htaccess
+/cache

@@ -16,10 +16,12 @@ class Notifier extends AbstractModel
 
     /**
      * @param string $project
+     * @param $subject
      * @param string $text
-     * @throws InvalidText
+     * @throws Notifier\Exception\InvalidText
+     * @param string $subject
      */
-    public function alarm($project, $text)
+    public function alarm($project, $subject, $text)
     {
         /**
          * @var Project $projectModel
@@ -38,7 +40,7 @@ class Notifier extends AbstractModel
         $emailList = $projectModel->getEmailList($project);
         $transport = new \Swift_Transport_SimpleMailInvoker();
         foreach($emailList as $email) {
-            $transport->mail($email, sprintf(self::$ALARM_TITLE, $project), $text, sprintf('From: %s', $this->site('noreply_email')));
+            $transport->mail($email, $subject, $text, sprintf('From: %s', $this->site('noreply_email')));
         }
 
         try {
@@ -48,7 +50,7 @@ class Notifier extends AbstractModel
         }
         $a1sms = $this->a1sms();
         foreach($phoneList as $phone) {
-            $a1sms->send($phone, sprintf(self::$ALARM_TITLE, $project));
+            $a1sms->send($phone, $subject);
         }
     }
 }
