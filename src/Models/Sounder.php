@@ -24,17 +24,15 @@ class Sounder extends AbstractModel
     }
 
     /**
-     * @param string $host
-     * @param int $port
+     * @param string $url
      * @param int $waitTimeoutInSeconds
      * @return string|bool
      */
-    public function load($host, $port = 80, $waitTimeoutInSeconds = 10)
+    public function load($url, $waitTimeoutInSeconds = 10)
     {
-        $curl = curl_init($host);
+        $curl = curl_init($url);
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_PORT => $port,
             CURLOPT_TIMEOUT => $waitTimeoutInSeconds
         ));
         $result = curl_exec($curl);
@@ -44,16 +42,15 @@ class Sounder extends AbstractModel
 
 
     /**
-     * @param string $host
-     * @param int $port
+     * @param string $url
      * @param int $waitTimeoutInSeconds
      * @return bool|int
      */
-    public function getLoadTime($host, $port = 80, $waitTimeoutInSeconds = 10)
+    public function getLoadTime($url, $waitTimeoutInSeconds = 10)
     {
         $timeAt = microtime(true);
         $result = false;
-        if(self::load($host, $port, $waitTimeoutInSeconds)) {
+        if(self::load($url, $waitTimeoutInSeconds)) {
             $result = microtime(true) - $timeAt;
             $result = intval($result * 1000);
         };
@@ -62,14 +59,13 @@ class Sounder extends AbstractModel
 
     /**
      * @param string $text
-     * @param string $host
-     * @param int $port
+     * @param string $url
      * @param int $waitTimeoutInSeconds
      * @return bool
      */
-    public function isTextOnPage($text, $host, $port = 80, $waitTimeoutInSeconds = 10)
+    public function isTextOnPage($text, $url, $waitTimeoutInSeconds = 10)
     {
-        $page = self::load($host, $port, $waitTimeoutInSeconds);
+        $page = self::load($url, $waitTimeoutInSeconds);
         return (bool) strpos($page, $text);
     }
 }

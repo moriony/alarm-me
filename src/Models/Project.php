@@ -90,7 +90,7 @@ class Project extends AbstractModel
     {
         $project = $this->getProject($projectName);
         $loadTime = $this->getModelsRepository()->getSounder()
-                         ->getLoadTime($project['host'], $project['port']);
+                         ->getLoadTime($project['load_url']);
         $result = false;
         if ($loadTime) {
             $result = sprintf('%d ms', $loadTime);
@@ -98,10 +98,14 @@ class Project extends AbstractModel
         return  $result;
     }
 
+    /**
+     * @param string $projectName
+     * @return bool
+     */
     public function getStatus($projectName)
     {
         $project = $this->getProject($projectName);
         return $this->getModelsRepository()->getSounder()
-                    ->isTextOnPage($project['positive_text'], $project['host'], $project['port']);
+                    ->isTextOnPage($project['positive_text'], $project['load_url']);
     }
 }
