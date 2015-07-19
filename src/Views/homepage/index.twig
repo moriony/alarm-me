@@ -2,7 +2,35 @@
 
 {% block content %}
     <div class="wrapper">
-        {% include 'homepage/index/table.twig' %}
-        {% include 'homepage/index/form.twig' %}
+        <table class="table status">
+            <thead>
+            <tr>
+                <th>Project</th>
+                <th>Ping</th>
+                <th>Load time</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for title, project in projects %}
+                <tr data-project="{{ title }}">
+                    <td>
+                        <a href="http://{{ project.host }}">{{ project.host }}</a>
+                    </td>
+                    <td data-project-data="ping">
+                        -
+                    </td>
+                    <td data-project-data="loadtime">
+                        -
+                    </td>
+                    <td data-project-data="status"
+                        data-project-success="<span class='label label-success'>working</span>"
+                        data-project-fail="<span class='label label-important'>down</span>">
+                        -
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
