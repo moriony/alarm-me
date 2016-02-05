@@ -4,16 +4,16 @@
     "license":  "MIT",
     "require": {
         "silex/silex"     : "1.*",
-        "twig/twig"       : "1.*",
+        "twig/twig"       : "*",
         "symfony/validator": "*",
-        "symfony/yaml"    : "2.*",
-        "symfony/twig-bridge" : "2.*",
+        "symfony/yaml"    : "~2.1",
+        "symfony/twig-bridge" : "*",
         "igorw/config-service-provider" : "*",
         "swiftmailer/swiftmailer": "*",
         "moriony/silex-a1sms-provider": "*",
         "moriony/a1sms-client": "dev-master",
         "moriony/instantiator": "*",
-        "symfony/console" : "2.*"
+        "symfony/console" : "*"
     },
     "autoload" : {
         "psr-0": {
